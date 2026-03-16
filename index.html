@@ -13,37 +13,40 @@ background:#ecf0f1;
 }
 
 .header{
-background:#34495e;
+background:#2c3e50;
 color:white;
 padding:15px;
 text-align:center;
 font-size:22px;
 }
 
-.container{
+.menu{
 display:flex;
-height:90vh;
+background:#34495e;
 }
 
-/* daftar barang */
-
-.barang{
-width:55%;
-background:white;
-padding:10px;
-overflow:auto;
-}
-
-.search{
-width:95%;
-padding:10px;
+.menu button{
+flex:1;
+padding:15px;
+border:none;
+background:#34495e;
+color:white;
 font-size:16px;
-margin-bottom:10px;
 }
+
+.menu button:hover{
+background:#2c3e50;
+}
+
+.container{
+padding:10px;
+}
+
+/* barang grid */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:repeat(3,1fr);
 gap:10px;
 }
 
@@ -52,26 +55,15 @@ background:#3498db;
 color:white;
 border:none;
 padding:20px;
-font-size:18px;
 border-radius:10px;
-cursor:pointer;
-}
-
-.btnBarang:hover{
-background:#2980b9;
+font-size:16px;
 }
 
 /* keranjang */
 
-.keranjang{
-width:45%;
-background:#fafafa;
-padding:10px;
-}
-
 table{
 width:100%;
-border-collapse:collapse;
+margin-top:10px;
 }
 
 td{
@@ -79,126 +71,118 @@ padding:6px;
 border-bottom:1px solid #ddd;
 }
 
-.hapus{
-color:red;
+input{
+padding:10px;
+font-size:16px;
+margin:5px;
+width:95%;
+}
+
+button{
 cursor:pointer;
 }
 
-.total{
-font-size:22px;
-margin-top:10px;
-}
-
-input{
-width:95%;
-padding:10px;
-font-size:18px;
-margin-top:5px;
-}
-
-.btnBayar{
+.btnHijau{
 background:#27ae60;
 color:white;
 border:none;
-padding:15px;
-font-size:20px;
+padding:12px;
 width:100%;
 margin-top:10px;
-border-radius:10px;
-cursor:pointer;
 }
 
-.btnReset{
+.btnMerah{
 background:#e74c3c;
 color:white;
 border:none;
 padding:10px;
-font-size:16px;
 width:100%;
-margin-top:10px;
-border-radius:10px;
-cursor:pointer;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="header">
-KASIR TOKO SEMBAKO
+KASIR TOKO
 </div>
 
-<div class="container">
+<div class="menu">
+<button onclick="menu('kasir')">Kasir</button>
+<button onclick="menu('barang')">Barang</button>
+</div>
 
-<!-- daftar barang -->
+<div class="container" id="kasir">
 
-<div class="barang">
-
-<input type="text" id="cari" class="search" placeholder="Cari barang...">
+<h3>Daftar Barang</h3>
 
 <div class="grid" id="listBarang"></div>
-
-</div>
-
-<!-- keranjang -->
-
-<div class="keranjang">
 
 <h3>Keranjang</h3>
 
 <table id="tabelKeranjang"></table>
 
-<div class="total">
 Total : Rp <span id="total">0</span>
-</div>
 
-<label>Bayar</label>
+<br><br>
+
+Bayar
 <input type="number" id="bayar">
 
-<div class="total">
 Kembali : Rp <span id="kembali">0</span>
-</div>
 
-<button class="btnBayar" onclick="bayar()">BAYAR</button>
-
-<button class="btnReset" onclick="resetTransaksi()">RESET</button>
+<button class="btnHijau" onclick="bayar()">BAYAR</button>
 
 </div>
+
+<!-- halaman barang -->
+
+<div class="container" id="barang" style="display:none">
+
+<h3>Tambah Barang</h3>
+
+<input id="namaBarang" placeholder="Nama Barang">
+<input id="hargaBarang" placeholder="Harga">
+<input id="stokBarang" placeholder="Stok">
+
+<button class="btnHijau" onclick="tambahBarang()">Simpan</button>
+
+<h3>Data Barang</h3>
+
+<table id="tabelBarang"></table>
 
 </div>
 
 <script>
 
-let barang=[
-{nama:"Gula 1kg",harga:16000},
-{nama:"Minyak Goreng",harga:18000},
-{nama:"Telur 1kg",harga:28000},
-{nama:"Beras 5kg",harga:70000},
-{nama:"Mie Instan",harga:3500},
-{nama:"Kopi Sachet",harga:2000},
-{nama:"Teh Celup",harga:5000},
-{nama:"Sabun Mandi",harga:3000}
+let barang=JSON.parse(localStorage.getItem("barang"))||[
+{nama:"Gula 1kg",harga:16000,stok:20},
+{nama:"Minyak Goreng",harga:18000,stok:15}
 ];
 
 let keranjang=[];
 
-function tampilBarang(filter=""){
+function simpanBarang(){
+
+localStorage.setItem("barang",JSON.stringify(barang));
+
+}
+
+function tampilBarang(){
 
 let html="";
 
 barang.forEach((b,i)=>{
 
-if(b.nama.toLowerCase().includes(filter.toLowerCase())){
-
 html+=`
-<button class="btnBarang" onclick="tambahBarang(${i})">
+<button class="btnBarang" onclick="tambahKeranjang(${i})">
 ${b.nama}<br>
-Rp ${b.harga}
+Rp ${b.harga}<br>
+Stok:${b.stok}
 </button>
 `;
-
-}
 
 });
 
@@ -206,9 +190,52 @@ document.getElementById("listBarang").innerHTML=html;
 
 }
 
-function tambahBarang(i){
+function tampilDataBarang(){
 
-keranjang.push(barang[i]);
+let html="";
+
+barang.forEach((b,i)=>{
+
+html+=`
+<tr>
+<td>${b.nama}</td>
+<td>${b.harga}</td>
+<td>${b.stok}</td>
+</tr>
+`;
+
+});
+
+document.getElementById("tabelBarang").innerHTML=html;
+
+}
+
+function tambahBarang(){
+
+let nama=document.getElementById("namaBarang").value;
+let harga=document.getElementById("hargaBarang").value;
+let stok=document.getElementById("stokBarang").value;
+
+barang.push({nama:nama,harga:parseInt(harga),stok:parseInt(stok)});
+
+simpanBarang();
+
+tampilBarang();
+tampilDataBarang();
+
+}
+
+function tambahKeranjang(i){
+
+if(barang[i].stok<=0){
+
+alert("Stok habis");
+
+return;
+
+}
+
+keranjang.push(i);
 
 tampilKeranjang();
 
@@ -219,17 +246,18 @@ function tampilKeranjang(){
 let html="";
 let total=0;
 
-keranjang.forEach((k,i)=>{
+keranjang.forEach((i,index)=>{
+
+let b=barang[i];
 
 html+=`
 <tr>
-<td>${k.nama}</td>
-<td>Rp ${k.harga}</td>
-<td class="hapus" onclick="hapusItem(${i})">❌</td>
+<td>${b.nama}</td>
+<td>${b.harga}</td>
 </tr>
 `;
 
-total+=k.harga;
+total+=b.harga;
 
 });
 
@@ -238,50 +266,46 @@ document.getElementById("total").innerText=total;
 
 }
 
-function hapusItem(i){
-
-keranjang.splice(i,1);
-
-tampilKeranjang();
-
-}
-
 document.getElementById("bayar").addEventListener("input",function(){
 
 let bayar=this.value;
 let total=parseInt(document.getElementById("total").innerText);
 
-let kembali=bayar-total;
-
-document.getElementById("kembali").innerText=kembali;
+document.getElementById("kembali").innerText=bayar-total;
 
 });
 
 function bayar(){
 
-alert("Transaksi berhasil");
+keranjang.forEach(i=>{
 
-resetTransaksi();
-
-}
-
-function resetTransaksi(){
-
-keranjang=[];
-tampilKeranjang();
-
-document.getElementById("bayar").value="";
-document.getElementById("kembali").innerText=0;
-
-}
-
-document.getElementById("cari").addEventListener("input",function(){
-
-tampilBarang(this.value);
+barang[i].stok--;
 
 });
 
+simpanBarang();
+
+alert("Transaksi sukses");
+
+keranjang=[];
+
+tampilKeranjang();
 tampilBarang();
+tampilDataBarang();
+
+}
+
+function menu(m){
+
+document.getElementById("kasir").style.display="none";
+document.getElementById("barang").style.display="none";
+
+document.getElementById(m).style.display="block";
+
+}
+
+tampilBarang();
+tampilDataBarang();
 
 </script>
 
