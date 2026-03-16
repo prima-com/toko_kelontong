@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Kasir Toko</title>
+<title>Aplikasi Kasir Toko</title>
 
 <style>
 
@@ -12,6 +12,8 @@ margin:0;
 background:#ecf0f1;
 }
 
+/* header */
+
 .header{
 background:#2c3e50;
 color:white;
@@ -19,6 +21,8 @@ padding:15px;
 text-align:center;
 font-size:22px;
 }
+
+/* menu */
 
 .menu{
 display:flex;
@@ -39,15 +43,16 @@ background:#2c3e50;
 }
 
 .container{
-padding:10px;
+padding:15px;
 }
 
-/* barang grid */
+/* grid barang */
 
 .grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:10px;
+margin-bottom:20px;
 }
 
 .btnBarang{
@@ -57,30 +62,32 @@ border:none;
 padding:20px;
 border-radius:10px;
 font-size:16px;
+cursor:pointer;
 }
 
-/* keranjang */
+/* table */
 
 table{
 width:100%;
+border-collapse:collapse;
 margin-top:10px;
 }
 
-td{
-padding:6px;
+td,th{
+padding:8px;
 border-bottom:1px solid #ddd;
 }
+
+/* input */
 
 input{
 padding:10px;
 font-size:16px;
-margin:5px;
-width:95%;
+margin:5px 0;
+width:100%;
 }
 
-button{
-cursor:pointer;
-}
+/* tombol */
 
 .btnHijau{
 background:#27ae60;
@@ -89,14 +96,8 @@ border:none;
 padding:12px;
 width:100%;
 margin-top:10px;
-}
-
-.btnMerah{
-background:#e74c3c;
-color:white;
-border:none;
-padding:10px;
-width:100%;
+font-size:16px;
+cursor:pointer;
 }
 
 </style>
@@ -106,13 +107,16 @@ width:100%;
 <body>
 
 <div class="header">
-KASIR TOKO
+KASIR TOKO SEMBAKO
 </div>
 
 <div class="menu">
 <button onclick="menu('kasir')">Kasir</button>
 <button onclick="menu('barang')">Barang</button>
+<button onclick="menu('laporan')">Laporan</button>
 </div>
+
+<!-- HALAMAN KASIR -->
 
 <div class="container" id="kasir">
 
@@ -122,22 +126,28 @@ KASIR TOKO
 
 <h3>Keranjang</h3>
 
-<table id="tabelKeranjang"></table>
+<table>
+<thead>
+<tr>
+<th>Barang</th>
+<th>Harga</th>
+</tr>
+</thead>
+<tbody id="tabelKeranjang"></tbody>
+</table>
 
-Total : Rp <span id="total">0</span>
-
-<br><br>
+<h3>Total : Rp <span id="total">0</span></h3>
 
 Bayar
 <input type="number" id="bayar">
 
-Kembali : Rp <span id="kembali">0</span>
+<h3>Kembali : Rp <span id="kembali">0</span></h3>
 
 <button class="btnHijau" onclick="bayar()">BAYAR</button>
 
 </div>
 
-<!-- halaman barang -->
+<!-- HALAMAN BARANG -->
 
 <div class="container" id="barang" style="display:none">
 
@@ -147,28 +157,82 @@ Kembali : Rp <span id="kembali">0</span>
 <input id="hargaBarang" placeholder="Harga">
 <input id="stokBarang" placeholder="Stok">
 
-<button class="btnHijau" onclick="tambahBarang()">Simpan</button>
+<button class="btnHijau" onclick="tambahBarang()">Simpan Barang</button>
 
 <h3>Data Barang</h3>
 
-<table id="tabelBarang"></table>
+<table>
+<thead>
+<tr>
+<th>Nama</th>
+<th>Harga</th>
+<th>Stok</th>
+</tr>
+</thead>
+
+<tbody id="tabelBarang"></tbody>
+
+</table>
+
+</div>
+
+<!-- HALAMAN LAPORAN -->
+
+<div class="container" id="laporan" style="display:none">
+
+<h3>Laporan Penjualan</h3>
+
+Total Transaksi : <span id="jumlahTransaksi">0</span>
+
+<br><br>
+
+Total Omzet : Rp <span id="totalOmzet">0</span>
+
+<h3>Riwayat Transaksi</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Tanggal</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody id="tabelLaporan"></tbody>
+
+</table>
 
 </div>
 
 <script>
 
-let barang=JSON.parse(localStorage.getItem("barang"))||[
+/* DATA BARANG */
+
+let barang = JSON.parse(localStorage.getItem("barang")) || [
 {nama:"Gula 1kg",harga:16000,stok:20},
 {nama:"Minyak Goreng",harga:18000,stok:15}
 ];
 
+let transaksi = JSON.parse(localStorage.getItem("transaksi")) || [];
+
 let keranjang=[];
 
-function simpanBarang(){
+/* SIMPAN DATA */
 
+function simpanBarang(){
 localStorage.setItem("barang",JSON.stringify(barang));
+}
+
+function simpanTransaksi(data){
+
+transaksi.push(data);
+
+localStorage.setItem("transaksi",JSON.stringify(transaksi));
 
 }
+
+/* TAMPIL BARANG */
 
 function tampilBarang(){
 
@@ -190,11 +254,13 @@ document.getElementById("listBarang").innerHTML=html;
 
 }
 
+/* TAMPIL DATA BARANG */
+
 function tampilDataBarang(){
 
 let html="";
 
-barang.forEach((b,i)=>{
+barang.forEach((b)=>{
 
 html+=`
 <tr>
@@ -210,13 +276,19 @@ document.getElementById("tabelBarang").innerHTML=html;
 
 }
 
+/* TAMBAH BARANG */
+
 function tambahBarang(){
 
 let nama=document.getElementById("namaBarang").value;
 let harga=document.getElementById("hargaBarang").value;
 let stok=document.getElementById("stokBarang").value;
 
-barang.push({nama:nama,harga:parseInt(harga),stok:parseInt(stok)});
+barang.push({
+nama:nama,
+harga:parseInt(harga),
+stok:parseInt(stok)
+});
 
 simpanBarang();
 
@@ -224,6 +296,8 @@ tampilBarang();
 tampilDataBarang();
 
 }
+
+/* TAMBAH KERANJANG */
 
 function tambahKeranjang(i){
 
@@ -241,12 +315,14 @@ tampilKeranjang();
 
 }
 
+/* TAMPIL KERANJANG */
+
 function tampilKeranjang(){
 
 let html="";
 let total=0;
 
-keranjang.forEach((i,index)=>{
+keranjang.forEach(i=>{
 
 let b=barang[i];
 
@@ -266,21 +342,33 @@ document.getElementById("total").innerText=total;
 
 }
 
+/* HITUNG KEMBALIAN */
+
 document.getElementById("bayar").addEventListener("input",function(){
 
 let bayar=this.value;
+
 let total=parseInt(document.getElementById("total").innerText);
 
 document.getElementById("kembali").innerText=bayar-total;
 
 });
 
+/* BAYAR */
+
 function bayar(){
 
+let total=parseInt(document.getElementById("total").innerText);
+
+let data={
+tanggal:new Date().toLocaleString(),
+total:total
+};
+
+simpanTransaksi(data);
+
 keranjang.forEach(i=>{
-
 barang[i].stok--;
-
 });
 
 simpanBarang();
@@ -292,20 +380,53 @@ keranjang=[];
 tampilKeranjang();
 tampilBarang();
 tampilDataBarang();
+tampilLaporan();
 
 }
+
+/* TAMPIL LAPORAN */
+
+function tampilLaporan(){
+
+let html="";
+let omzet=0;
+
+transaksi.forEach(t=>{
+
+html+=`
+<tr>
+<td>${t.tanggal}</td>
+<td>Rp ${t.total}</td>
+</tr>
+`;
+
+omzet+=t.total;
+
+});
+
+document.getElementById("tabelLaporan").innerHTML=html;
+document.getElementById("jumlahTransaksi").innerText=transaksi.length;
+document.getElementById("totalOmzet").innerText=omzet;
+
+}
+
+/* MENU */
 
 function menu(m){
 
 document.getElementById("kasir").style.display="none";
 document.getElementById("barang").style.display="none";
+document.getElementById("laporan").style.display="none";
 
 document.getElementById(m).style.display="block";
 
 }
 
+/* LOAD AWAL */
+
 tampilBarang();
 tampilDataBarang();
+tampilLaporan();
 
 </script>
 
