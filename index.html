@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kasir Toko</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:#f2f2f2;
+}
+
+.header{
+background:#2c3e50;
+color:white;
+padding:15px;
+text-align:center;
+font-size:22px;
+}
+
+.container{
+display:flex;
+height:90vh;
+}
+
+.barang{
+width:50%;
+background:white;
+padding:10px;
+overflow:auto;
+}
+
+.keranjang{
+width:50%;
+background:#fafafa;
+padding:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.btnBarang{
+background:#3498db;
+color:white;
+border:none;
+padding:20px;
+font-size:18px;
+border-radius:10px;
+}
+
+table{
+width:100%;
+margin-top:10px;
+}
+
+td{
+padding:5px;
+}
+
+.total{
+font-size:22px;
+margin-top:10px;
+}
+
+input{
+width:100%;
+padding:10px;
+font-size:18px;
+margin-top:5px;
+}
+
+.btnBayar{
+background:#27ae60;
+color:white;
+border:none;
+padding:15px;
+font-size:20px;
+width:100%;
+margin-top:10px;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+KASIR TOKO SEMBAKO
+</div>
+
+<div class="container">
+
+<div class="barang">
+
+<h3>Daftar Barang</h3>
+
+<div class="grid" id="listBarang"></div>
+
+</div>
+
+<div class="keranjang">
+
+<h3>Keranjang</h3>
+
+<table id="tabelKeranjang"></table>
+
+<div class="total">
+Total : Rp <span id="total">0</span>
+</div>
+
+<label>Bayar</label>
+<input type="number" id="bayar">
+
+<div class="total">
+Kembali : Rp <span id="kembali">0</span>
+</div>
+
+<button class="btnBayar" onclick="bayar()">BAYAR</button>
+
+</div>
+
+</div>
+
+<script>
+
+let barang = [
+{nama:"Gula 1kg",harga:16000},
+{nama:"Minyak Goreng",harga:18000},
+{nama:"Telur 1kg",harga:28000},
+{nama:"Beras 5kg",harga:70000},
+{nama:"Mie Instan",harga:3500},
+{nama:"Kopi Sachet",harga:2000}
+];
+
+let keranjang=[];
+
+function tampilBarang(){
+
+let html="";
+
+barang.forEach((b,i)=>{
+
+html+=`
+<button class="btnBarang" onclick="tambahBarang(${i})">
+${b.nama}<br>
+Rp ${b.harga}
+</button>
+`;
+
+});
+
+document.getElementById("listBarang").innerHTML=html;
+
+}
+
+function tambahBarang(i){
+
+keranjang.push(barang[i]);
+
+tampilKeranjang();
+
+}
+
+function tampilKeranjang(){
+
+let html="";
+let total=0;
+
+keranjang.forEach((k,i)=>{
+
+html+=`
+<tr>
+<td>${k.nama}</td>
+<td>Rp ${k.harga}</td>
+</tr>
+`;
+
+total+=k.harga;
+
+});
+
+document.getElementById("tabelKeranjang").innerHTML=html;
+document.getElementById("total").innerText=total;
+
+}
+
+document.getElementById("bayar").addEventListener("input",function(){
+
+let bayar=this.value;
+let total=parseInt(document.getElementById("total").innerText);
+
+let kembali=bayar-total;
+
+document.getElementById("kembali").innerText=kembali;
+
+});
+
+function bayar(){
+
+alert("Transaksi berhasil");
+
+keranjang=[];
+tampilKeranjang();
+
+document.getElementById("bayar").value="";
+document.getElementById("kembali").innerText=0;
+
+}
+
+tampilBarang();
+
+</script>
+
+</body>
+</html>
