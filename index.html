@@ -1,434 +1,399 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Aplikasi Kasir Toko</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiraStitch - Rajutan Benang Handmade</title>
+    <!-- Mengambil Font dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- RESET & GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdfbf7; /* Warna krem lembut */
+        }
 
-body{
-font-family:Arial;
-margin:0;
-background:#ecf0f1;
-}
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5d4037; /* Coklat tua elegan */
+        }
 
-/* header */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-.header{
-background:#2c3e50;
-color:white;
-padding:15px;
-text-align:center;
-font-size:22px;
-}
+        ul {
+            list-style: none;
+        }
 
-/* menu */
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-.menu{
-display:flex;
-background:#34495e;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.menu button{
-flex:1;
-padding:15px;
-border:none;
-background:#34495e;
-color:white;
-font-size:16px;
-}
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #d7ccc8;
+            color: #5d4037;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 2px solid #5d4037;
+        }
 
-.menu button:hover{
-background:#2c3e50;
-}
+        .btn:hover {
+            background-color: #5d4037;
+            color: #fff;
+        }
 
-.container{
-padding:15px;
-}
+        /* --- HEADER / NAVBAR --- */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* grid barang */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-bottom:20px;
-}
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #5d4037;
+        }
 
-.btnBarang{
-background:#3498db;
-color:white;
-border:none;
-padding:20px;
-border-radius:10px;
-font-size:16px;
-cursor:pointer;
-}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-/* table */
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:10px;
-}
+        .nav-links a:hover {
+            color: #8d6e63;
+        }
 
-td,th{
-padding:8px;
-border-bottom:1px solid #ddd;
-}
+        /* --- HERO SECTION --- */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1606230638388-988c52c9a274?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
 
-/* input */
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-input{
-padding:10px;
-font-size:16px;
-margin:5px 0;
-width:100%;
-}
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
-/* tombol */
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
 
-.btnHijau{
-background:#27ae60;
-color:white;
-border:none;
-padding:12px;
-width:100%;
-margin-top:10px;
-font-size:16px;
-cursor:pointer;
-}
+        .hero .btn {
+            background-color: #fff;
+            color: #5d4037;
+            border: none;
+        }
 
-</style>
+        .hero .btn:hover {
+            background-color: #f0e6dd;
+        }
 
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* --- PRODUCTS SECTION --- */
+        .products {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: #fdfbf7;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #8d6e63;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- FEATURES / WHY US --- */
+        .features {
+            padding: 80px 0;
+            background-color: #efebe9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: #5d4037;
+            margin-bottom: 20px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #3e2723;
+            color: #fff;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #d7ccc8;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .nav-links {
+                margin-top: 20px;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-KASIR TOKO SEMBAKO
-</div>
-
-<div class="menu">
-<button onclick="menu('kasir')">Kasir</button>
-<button onclick="menu('barang')">Barang</button>
-<button onclick="menu('laporan')">Laporan</button>
-</div>
-
-<!-- HALAMAN KASIR -->
-
-<div class="container" id="kasir">
-
-<h3>Daftar Barang</h3>
-
-<div class="grid" id="listBarang"></div>
-
-<h3>Keranjang</h3>
-
-<table>
-<thead>
-<tr>
-<th>Barang</th>
-<th>Harga</th>
-</tr>
-</thead>
-<tbody id="tabelKeranjang"></tbody>
-</table>
-
-<h3>Total : Rp <span id="total">0</span></h3>
-
-Bayar
-<input type="number" id="bayar">
-
-<h3>Kembali : Rp <span id="kembali">0</span></h3>
-
-<button class="btnHijau" onclick="bayar()">BAYAR</button>
-
-</div>
-
-<!-- HALAMAN BARANG -->
-
-<div class="container" id="barang" style="display:none">
-
-<h3>Tambah Barang</h3>
-
-<input id="namaBarang" placeholder="Nama Barang">
-<input id="hargaBarang" placeholder="Harga">
-<input id="stokBarang" placeholder="Stok">
-
-<button class="btnHijau" onclick="tambahBarang()">Simpan Barang</button>
-
-<h3>Data Barang</h3>
-
-<table>
-<thead>
-<tr>
-<th>Nama</th>
-<th>Harga</th>
-<th>Stok</th>
-</tr>
-</thead>
-
-<tbody id="tabelBarang"></tbody>
-
-</table>
-
-</div>
-
-<!-- HALAMAN LAPORAN -->
-
-<div class="container" id="laporan" style="display:none">
-
-<h3>Laporan Penjualan</h3>
-
-Total Transaksi : <span id="jumlahTransaksi">0</span>
-
-<br><br>
-
-Total Omzet : Rp <span id="totalOmzet">0</span>
-
-<h3>Riwayat Transaksi</h3>
-
-<table>
-
-<thead>
-<tr>
-<th>Tanggal</th>
-<th>Total</th>
-</tr>
-</thead>
-
-<tbody id="tabelLaporan"></tbody>
-
-</table>
-
-</div>
-
-<script>
-
-/* DATA BARANG */
-
-let barang = JSON.parse(localStorage.getItem("barang")) || [
-{nama:"Gula 1kg",harga:16000,stok:20},
-{nama:"Minyak Goreng",harga:18000,stok:15}
-];
-
-let transaksi = JSON.parse(localStorage.getItem("transaksi")) || [];
-
-let keranjang=[];
-
-/* SIMPAN DATA */
-
-function simpanBarang(){
-localStorage.setItem("barang",JSON.stringify(barang));
-}
-
-function simpanTransaksi(data){
-
-transaksi.push(data);
-
-localStorage.setItem("transaksi",JSON.stringify(transaksi));
-
-}
-
-/* TAMPIL BARANG */
-
-function tampilBarang(){
-
-let html="";
-
-barang.forEach((b,i)=>{
-
-html+=`
-<button class="btnBarang" onclick="tambahKeranjang(${i})">
-${b.nama}<br>
-Rp ${b.harga}<br>
-Stok:${b.stok}
-</button>
-`;
-
-});
-
-document.getElementById("listBarang").innerHTML=html;
-
-}
-
-/* TAMPIL DATA BARANG */
-
-function tampilDataBarang(){
-
-let html="";
-
-barang.forEach((b)=>{
-
-html+=`
-<tr>
-<td>${b.nama}</td>
-<td>${b.harga}</td>
-<td>${b.stok}</td>
-</tr>
-`;
-
-});
-
-document.getElementById("tabelBarang").innerHTML=html;
-
-}
-
-/* TAMBAH BARANG */
-
-function tambahBarang(){
-
-let nama=document.getElementById("namaBarang").value;
-let harga=document.getElementById("hargaBarang").value;
-let stok=document.getElementById("stokBarang").value;
-
-barang.push({
-nama:nama,
-harga:parseInt(harga),
-stok:parseInt(stok)
-});
-
-simpanBarang();
-
-tampilBarang();
-tampilDataBarang();
-
-}
-
-/* TAMBAH KERANJANG */
-
-function tambahKeranjang(i){
-
-if(barang[i].stok<=0){
-
-alert("Stok habis");
-
-return;
-
-}
-
-keranjang.push(i);
-
-tampilKeranjang();
-
-}
-
-/* TAMPIL KERANJANG */
-
-function tampilKeranjang(){
-
-let html="";
-let total=0;
-
-keranjang.forEach(i=>{
-
-let b=barang[i];
-
-html+=`
-<tr>
-<td>${b.nama}</td>
-<td>${b.harga}</td>
-</tr>
-`;
-
-total+=b.harga;
-
-});
-
-document.getElementById("tabelKeranjang").innerHTML=html;
-document.getElementById("total").innerText=total;
-
-}
-
-/* HITUNG KEMBALIAN */
-
-document.getElementById("bayar").addEventListener("input",function(){
-
-let bayar=this.value;
-
-let total=parseInt(document.getElementById("total").innerText);
-
-document.getElementById("kembali").innerText=bayar-total;
-
-});
-
-/* BAYAR */
-
-function bayar(){
-
-let total=parseInt(document.getElementById("total").innerText);
-
-let data={
-tanggal:new Date().toLocaleString(),
-total:total
-};
-
-simpanTransaksi(data);
-
-keranjang.forEach(i=>{
-barang[i].stok--;
-});
-
-simpanBarang();
-
-alert("Transaksi sukses");
-
-keranjang=[];
-
-tampilKeranjang();
-tampilBarang();
-tampilDataBarang();
-tampilLaporan();
-
-}
-
-/* TAMPIL LAPORAN */
-
-function tampilLaporan(){
-
-let html="";
-let omzet=0;
-
-transaksi.forEach(t=>{
-
-html+=`
-<tr>
-<td>${t.tanggal}</td>
-<td>Rp ${t.total}</td>
-</tr>
-`;
-
-omzet+=t.total;
-
-});
-
-document.getElementById("tabelLaporan").innerHTML=html;
-document.getElementById("jumlahTransaksi").innerText=transaksi.length;
-document.getElementById("totalOmzet").innerText=omzet;
-
-}
-
-/* MENU */
-
-function menu(m){
-
-document.getElementById("kasir").style.display="none";
-document.getElementById("barang").style.display="none";
-document.getElementById("laporan").style.display="none";
-
-document.getElementById(m).style.display="block";
-
-}
-
-/* LOAD AWAL */
-
-tampilBarang();
-tampilDataBarang();
-tampilLaporan();
-
-</script>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">WiraStitch.</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#products">Koleksi</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Hangat dalam Setiap Jahitan</h1>
+            <p>Koleksi rajutan benang handmade premium yang dibuat dengan cinta untuk menemani hari-harimu.</p>
+            <a href="#products" class="btn">Lihat Koleksi</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Tentang WiraStitch</h2>
+            <p>WiraStitch lahir dari kecintaan kami terhadap seni merajut tradisional. Setiap produk, mulai dari syal, sweater, hingga aksesoris, dirajut satu per satu oleh tangan ahli kami menggunakan benang berkualitas tinggi. Kami percaya bahwa kehangatan tidak hanya berasal dari bahan, tapi juga dari ketulusan pembuatnya.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Koleksi Terpopuler</h2>
+                <p>Pilihan favorit pelanggan kami bulan ini</p>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1629198727508-361c563498d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Syal Rajut" class="product-img">
+                    <div class="product-info">
+                        <h3>Syal Wol Classic</h3>
+                        <span class="price">Rp 150.000</span>
+                        <p>Lembut, hangat, dan cocok untuk segala suasana.</p>
+                        <br>
+                        <a href="#" class="btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1621335829175-95f437384d7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sweater Rajut" class="product-img">
+                    <div class="product-info">
+                        <h3>Sweater Oversized</h3>
+                        <span class="price">Rp 285.000</span>
+                        <p>Gaya santai dengan kenyamanan maksimal sepanjang hari.</p>
+                        <br>
+                        <a href="#" class="btn">Beli Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Topi Rajut" class="product-img">
+                    <div class="product-info">
+                        <h3>Beanie Knit Hat</h3>
+                        <span class="price">Rp 85.000</span>
+                        <p>Aksesoris pelengkap gaya musim dingin Anda.</p>
+                        <br>
+                        <a href="#" class="btn">Beli Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>100% Handmade</h3>
+                    <p>Dibuat secara manual dengan detail yang presisi.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Bahan Premium</h3>
+                    <p>Menggunakan benang wol dan katun berkualitas tinggi.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Pengiriman Cepat</h3>
+                    <p>Melayani pengiriman ke seluruh wilayah Indonesia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p class="footer-text">&copy; 2026 WiraStitch. All Rights Reserved.</p>
+            <p class="footer-text">Designed by PRO DIGITAL</p>
+        </div>
+    </footer>
 
 </body>
 </html>
