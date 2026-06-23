@@ -2439,7 +2439,99 @@
     });
 </script>  
 
+    <!-- ====== LOAD FEATURED PRODUCT FROM LOCALSTORAGE ====== -->
+    <script>
+        function loadFeaturedFromStorage() {
+            const data = localStorage.getItem('wirastitch_featured');
+            if (!data) return; // Use default hardcoded featured
 
+            const featured = JSON.parse(data);
+            const featuredSection = document.querySelector('.featured');
+            
+            if (!featuredSection) return;
+
+            // Hide section if visibility is off
+            if (featured.visible === false) {
+                featuredSection.style.display = 'none';
+                return;
+            }
+
+            // Update label
+            const labelEl = featuredSection.querySelector('.featured-content h3');
+            if (labelEl && featured.label) {
+                labelEl.textContent = featured.label;
+            }
+
+            // Update name
+            const nameEl = featuredSection.querySelector('.featured-content h2');
+            if (nameEl && featured.name) {
+                nameEl.textContent = featured.name;
+            }
+
+            // Update description
+            const descEl = featuredSection.querySelector('.featured-content > p');
+            if (descEl && featured.description) {
+                descEl.textContent = featured.description;
+            }
+
+            // Update price
+            const priceEl = featuredSection.querySelector('.featured-price');
+            if (priceEl && featured.price) {
+                priceEl.textContent = 'Rp ' + featured.price.toLocaleString('id-ID');
+            }
+
+            // Update features list
+            const featuresList = featuredSection.querySelector('.featured-features');
+            if (featuresList && featured.features && featured.features.length > 0) {
+                featuresList.innerHTML = '';
+                featured.features.forEach(feature => {
+                    const li = document.createElement('li');
+                    li.textContent = feature;
+                    featuresList.appendChild(li);
+                });
+            }
+
+            // Update image/emoji
+            const imageContainer = featuredSection.querySelector('.featured-image');
+            if (imageContainer) {
+                if (featured.image) {
+                    imageContainer.innerHTML = `<img src="${featured.image}" alt="${featured.name}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                } else if (featured.emoji) {
+                    imageContainer.innerHTML = `<span class="featured-emoji">${featured.emoji}</span>`;
+                }
+            }
+
+            // Update CTA button
+            const ctaBtn = featuredSection.querySelector('.featured-content .btn-primary');
+            if (ctaBtn) {
+                if (featured.buttonText) {
+                    ctaBtn.textContent = featured.buttonText;
+                }
+                if (featured.buttonLink) {
+                    ctaBtn.setAttribute('href', featured.buttonLink);
+                } else {
+                    // Use WhatsApp with product name
+                    const settings = localStorage.getItem('wirastitch_settings');
+                    let waNumber = '6281234567890';
+                    if (settings) {
+                        const s = JSON.parse(settings);
+                        waNumber = s.whatsapp || waNumber;
+                    }
+                    const message = `Halo WiraStitch, saya tertarik dengan ${featured.name}`;
+                    ctaBtn.setAttribute('href', `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`);
+                }
+            }
+        }
+
+        // Run after DOM loaded (tambahkan pemanggilan ini)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                loadFeaturedFromStorage();
+            });
+        } else {
+            loadFeaturedFromStorage();
+        }
+    </script>
 
 
 
