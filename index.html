@@ -3,30 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiraStitch - Rajutan Benang Handmade</title>
-    <!-- Mengambil Font dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- Icon Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <title>WiraStitch - Rajutan Handmade Premium</title>
+    <meta name="description" content="WiraStitch - Produk rajutan handmade berkualitas tinggi dari benang pilihan. Tas, topi, syal, boneka, dan aksesoris rajutan unik.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- RESET & GLOBAL STYLES --- */
+        /* ====== RESET & BASE ====== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fdfbf7; /* Warna krem lembut */
+        :root {
+            --primary: #8B5E3C;
+            --primary-dark: #6B4226;
+            --primary-light: #C49A6C;
+            --secondary: #D4A574;
+            --accent: #E8985E;
+            --cream: #FFF8F0;
+            --cream-dark: #F5E6D3;
+            --text-dark: #2D2D2D;
+            --text-medium: #5A5A5A;
+            --text-light: #8A8A8A;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(139, 94, 60, 0.1);
+            --shadow-hover: 0 8px 30px rgba(139, 94, 60, 0.2);
+            --radius: 12px;
+            --transition: all 0.3s ease;
         }
 
-        h1, h2, h3 {
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: #5d4037; /* Coklat tua elegan */
         }
 
         a {
@@ -34,13 +54,9 @@
             color: inherit;
         }
 
-        ul {
-            list-style: none;
-        }
-
         img {
             max-width: 100%;
-            display: block;
+            height: auto;
         }
 
         .container {
@@ -49,351 +65,1936 @@
             padding: 0 20px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #d7ccc8;
-            color: #5d4037;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: 0.3s;
-            border: 2px solid #5d4037;
-        }
-
-        .btn:hover {
-            background-color: #5d4037;
-            color: #fff;
-        }
-
-        /* --- HEADER / NAVBAR --- */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #5d4037;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #8d6e63;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1606230638388-988c52c9a274?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .hero .btn {
-            background-color: #fff;
-            color: #5d4037;
-            border: none;
-        }
-
-        .hero .btn:hover {
-            background-color: #f0e6dd;
-        }
-
-        /* --- ABOUT SECTION --- */
-        .about {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .about p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: #666;
-        }
-
-        /* --- PRODUCTS SECTION --- */
-        .products {
-            padding: 80px 0;
-            background-color: #fff;
-        }
-
         .section-title {
             text-align: center;
             margin-bottom: 50px;
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #fdfbf7;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-img {
-            height: 300px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-info h3 {
-            font-size: 1.5rem;
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
             margin-bottom: 10px;
         }
 
-        .price {
-            color: #8d6e63;
-            font-weight: 700;
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .section-title .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* ====== NAVBAR ====== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--cream-dark);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-size: 1.2rem;
+        }
+
+        .nav-logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cart {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .nav-cart .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(139, 94, 60, 0.1);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-main {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(139, 94, 60, 0.2);
+        }
+
+        .hero-image-main .hero-emoji {
+            font-size: 8rem;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--white);
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 20px;
+            right: -20px;
+            animation-delay: 0.5s;
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 40px;
+            left: -30px;
+            animation-delay: 1s;
+        }
+
+        .floating-card .card-emoji {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .floating-card .card-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .floating-card .card-sub {
+            font-size: 0.7rem;
+            color: var(--text-light);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ====== CATEGORIES ====== */
+        .categories {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .category-card {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: var(--radius);
+            background: var(--cream);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+
+        .category-card .cat-icon {
+            font-size: 3rem;
             margin-bottom: 15px;
             display: block;
         }
 
-        /* --- FEATURES / WHY US --- */
-        .features {
-            padding: 80px 0;
-            background-color: #efebe9;
+        .category-card h3 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            text-align: center;
+        .category-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
-        .feature-item i {
-            font-size: 3rem;
-            color: #5d4037;
-            margin-bottom: 20px;
+        /* ====== PRODUCTS ====== */
+        .products {
+            padding: 100px 0;
+            background: var(--cream);
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #3e2723;
-            color: #fff;
-            padding: 50px 0 20px;
-            text-align: center;
+        .products-filter {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        .social-icons {
-            margin-bottom: 20px;
-        }
-
-        .social-icons a {
-            color: #fff;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #d7ccc8;
-        }
-
-        .footer-text {
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 2px solid var(--cream-dark);
+            background: var(--white);
+            color: var(--text-medium);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
             font-size: 0.9rem;
-            opacity: 0.7;
         }
 
-        /* --- RESPONSIVE --- */
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            height: 280px;
+            background: linear-gradient(135deg, var(--cream-dark), var(--cream));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image .product-emoji {
+            font-size: 5rem;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-emoji {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .product-wishlist:hover {
+            background: #ff4757;
+            color: white;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info .product-category {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin: 8px 0;
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .product-info .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .product-price .old-price {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 5px;
+        }
+
+        .btn-add-cart {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* ====== FEATURED / BEST SELLER ====== */
+        .featured {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .featured-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 500px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .featured-image .featured-emoji {
+            font-size: 10rem;
+        }
+
+        .featured-content h3 {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .featured-content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .featured-content p {
+            color: var(--text-medium);
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .featured-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .featured-features li {
+            padding: 8px 0;
+            color: var(--text-medium);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .featured-features li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: rgba(139, 94, 60, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .featured-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        /* ====== ABOUT / PROCESS ====== */
+        .about {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--text-medium);
+            margin-bottom: 15px;
+        }
+
+        .about-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .about-img-card {
+            border-radius: var(--radius);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .about-img-card:nth-child(1) {
+            background: linear-gradient(135deg, #f8e8d4, #f0d4b8);
+        }
+
+        .about-img-card:nth-child(2) {
+            background: linear-gradient(135deg, #e8d4c0, #d4b896);
+            margin-top: 30px;
+        }
+
+        .about-img-card:nth-child(3) {
+            background: linear-gradient(135deg, #d4c0a8, #c4a882);
+            margin-top: -30px;
+        }
+
+        .about-img-card:nth-child(4) {
+            background: linear-gradient(135deg, #c4a882, #b49670);
+        }
+
+        /* ====== PROCESS ====== */
+        .process {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: var(--cream-dark);
+            z-index: 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: 3px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* ====== TESTIMONIALS ====== */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-stars {
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* ====== CTA SECTION ====== */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '🧶';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            font-size: 5rem;
+            opacity: 0.1;
+        }
+
+        .cta::after {
+            content: '🪡';
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            font-size: 5rem;
+            opacity: 0.1;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .btn {
+            background: var(--white);
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .cta .btn:hover {
+            background: var(--cream);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ====== NEWSLETTER ====== */
+        .newsletter {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .newsletter-box {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 60px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter-box h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .newsletter-box p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid var(--cream-dark);
+            background: var(--white);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--primary);
+        }
+
+        .newsletter-form button {
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .footer-brand h3 span {
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+        }
+
+        .footer-payments {
+            display: flex;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* ====== WHATSAPP FLOAT ====== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ====== BACK TO TOP ====== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* ====== CART MODAL ====== */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: var(--white);
+            z-index: 2001;
+            transition: var(--transition);
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .cart-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+        }
+
+        .cart-close {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .cart-close:hover {
+            background: var(--cream-dark);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--cream);
+        }
+
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .cart-item-qty button {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--cream-dark);
+            background: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-remove {
+            color: #ff4757;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .cart-total {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid var(--cream-dark);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .cart-total-row.total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--cream-dark);
+        }
+
+        .cart-checkout {
+            width: 100%;
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cart-checkout:hover {
+            background: var(--primary-dark);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .cart-empty .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .cart-empty p {
+            color: var(--text-light);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-image-main {
+                width: 350px;
+                height: 350px;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                padding: 40px;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+                transition: var(--transition);
+                z-index: 1001;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+                z-index: 1002;
+            }
+
+            .hero-content h1 {
                 font-size: 2.5rem;
             }
-            
-            nav {
-                flex-direction: column;
-                height: auto;
-                padding: 20px 0;
+
+            .hero-image-main {
+                width: 280px;
+                height: 280px;
             }
 
-            .nav-links {
-                margin-top: 20px;
-                gap: 15px;
+            .hero-image-main .hero-emoji {
+                font-size: 5rem;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">WiraStitch.</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#about">Tentang</a></li>
-                    <li><a href="#products">Koleksi</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </nav>
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="logo-icon">🧶</div>
+                <h1>Wira<span>Stitch</span></h1>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#kategori">Kategori</a></li>
+                <li><a href="#produk">Produk</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+                <li>
+                    <div class="nav-cart" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <h1>Hangat dalam Setiap Jahitan</h1>
-            <p>Koleksi rajutan benang handmade premium yang dibuat dengan cinta untuk menemani hari-harimu.</p>
-            <a href="#products" class="btn">Lihat Koleksi</a>
+    <!-- ====== HERO SECTION ====== -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">✨ Handmade with Love</div>
+                <h1>Rajutan <span>Premium</span> Buatan Tangan Penuh Cinta</h1>
+                <p>Setiap jahitan menceritakan kisah. Temukan koleksi rajutan unik dari benang berkualitas tinggi yang dibuat khusus untuk Anda.</p>
+                <div class="hero-buttons">
+                    <a href="#produk" class="btn btn-primary">Belanja Sekarang</a>
+                    <a href="#tentang" class="btn btn-secondary">Pelajari Lebih</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>Produk Terjual</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>200+</h3>
+                        <p>Pelanggan Puas</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Desain Unik</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-main">
+                    <span class="hero-emoji">🧶</span>
+                </div>
+                <div class="floating-card">
+                    <div class="card-emoji">⭐</div>
+                    <div class="card-text">Rating 4.9</div>
+                    <div class="card-sub">dari 200+ review</div>
+                </div>
+                <div class="floating-card">
+                    <div class="card-emoji">🎨</div>
+                    <div class="card-text">Custom Design</div>
+                    <div class="card-sub">Sesuai keinginan</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Tentang WiraStitch</h2>
-            <p>WiraStitch lahir dari kecintaan kami terhadap seni merajut tradisional. Setiap produk, mulai dari syal, sweater, hingga aksesoris, dirajut satu per satu oleh tangan ahli kami menggunakan benang berkualitas tinggi. Kami percaya bahwa kehangatan tidak hanya berasal dari bahan, tapi juga dari ketulusan pembuatnya.</p>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products">
+    <!-- ====== CATEGORIES ====== -->
+    <section class="categories" id="kategori">
         <div class="container">
             <div class="section-title">
-                <h2>Koleksi Terpopuler</h2>
-                <p>Pilihan favorit pelanggan kami bulan ini</p>
+                <h2>Kategori Produk</h2>
+                <div class="divider"></div>
+                <p>Jelajahi berbagai kategori rajutan handmade kami</p>
             </div>
-            
-            <div class="product-grid">
+            <div class="categories-grid">
+                <div class="category-card">
+                    <span class="cat-icon">👜</span>
+                    <h3>Tas Rajut</h3>
+                    <p>Tas elegan untuk berbagai occasions</p>
+                </div>
+                <div class="category-card">
+                    <span class="cat-icon">🧢</span>
+                    <h3>Topi & Beanie</h3>
+                    <p>Pelindung kepala yang stylish</p>
+                </div>
+                <div class="category-card">
+                    <span class="cat-icon">🧣</span>
+                    <h3>Syal & Scarf</h3>
+                    <p>Kehangatan dengan sentuhan seni</p>
+                </div>
+                <div class="category-card">
+                    <span class="cat-icon">🧸</span>
+                    <h3>Boneka Amigurumi</h3>
+                    <p>Boneka lucu buatan tangan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PRODUCTS ====== -->
+    <section class="products" id="produk">
+        <div class="container">
+            <div class="section-title">
+                <h2>Koleksi Terbaik</h2>
+                <div class="divider"></div>
+                <p>Produk rajutan pilihan dengan kualitas premium</p>
+            </div>
+            <div class="products-filter">
+                <button class="filter-btn active" onclick="filterProducts('all')">Semua</button>
+                <button class="filter-btn" onclick="filterProducts('tas')">Tas</button>
+                <button class="filter-btn" onclick="filterProducts('topi')">Topi</button>
+                <button class="filter-btn" onclick="filterProducts('syal')">Syal</button>
+                <button class="filter-btn" onclick="filterProducts('boneka')">Boneka</button>
+                <button class="filter-btn" onclick="filterProducts('aksesoris')">Aksesoris</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
                 <!-- Product 1 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1629198727508-361c563498d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Syal Rajut" class="product-img">
+                <div class="product-card" data-category="tas">
+                    <div class="product-image">
+                        <span class="product-emoji">👜</span>
+                        <span class="product-badge">Best Seller</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">♡</div>
+                    </div>
                     <div class="product-info">
-                        <h3>Syal Wol Classic</h3>
-                        <span class="price">Rp 150.000</span>
-                        <p>Lembut, hangat, dan cocok untuk segala suasana.</p>
-                        <br>
-                        <a href="#" class="btn">Beli Sekarang</a>
+                        <span class="product-category">Tas Rajut</span>
+                        <h3>Tas Tote Bunga Sakura</h3>
+                        <p class="product-desc">Tas tote rajut motif bunga sakura, benang katun premium</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 185.000</span>
+                            <button class="btn-add-cart" onclick="addToCart('Tas Tote Bunga Sakura', 185000, '👜')">+</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1621335829175-95f437384d7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Sweater Rajut" class="product-img">
+                <div class="product-card" data-category="topi">
+                    <div class="product-image">
+                        <span class="product-emoji">🧢</span>
+                        <span class="product-badge">New</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">♡</div>
+                    </div>
                     <div class="product-info">
-                        <h3>Sweater Oversized</h3>
-                        <span class="price">Rp 285.000</span>
-                        <p>Gaya santai dengan kenyamanan maksimal sepanjang hari.</p>
-                        <br>
-                        <a href="#" class="btn">Beli Sekarang</a>
+                        <span class="product-category">Topi</span>
+                        <h3>Beanie Chunky Winter</h3>
+                        <p class="product-desc">Topi beanie rajut tebal, cocok untuk cuaca dingin</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 95.000</span>
+                            <button class="btn-add-cart" onclick="addToCart('Beanie Chunky Winter', 95000, '🧢')">+</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Topi Rajut" class="product-img">
+                <div class="product-card" data-category="syal">
+                    <div class="product-image">
+                        <span class="product-emoji">🧣</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">♡</div>
+                    </div>
                     <div class="product-info">
-                        <h3>Beanie Knit Hat</h3>
-                        <span class="price">Rp 85.000</span>
-                        <p>Aksesoris pelengkap gaya musim dingin Anda.</p>
-                        <br>
-                        <a href="#" class="btn">Beli Sekarang</a>
+                        <span class="product-category">Syal</span>
+                        <h3>Scarf Gradient Pelangi</h3>
+                        <p class="product-desc">Syal panjang dengan gradasi warna pelangi yang indah</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 125.000</span>
+                            <button class="btn-add-cart" onclick="addToCart('Scarf Gradient Pelangi', 125000, '🧣')">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="boneka">
+                    <div class="product-image">
+                        <span class="product-emoji">🧸</span>
+                        <span class="product-badge">Limited</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">♡</div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Boneka</span>
+                        <h3>Amigurumi Beruang Lucu</h3>
+                        <p class="product-desc">Boneka rajut amigurumi beruang, cocok untuk hadiah</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 150.000</span>
+                            <button class="btn-add-cart" onclick="addToCart('Amigurumi Beruang Lucu', 150000, '🧸')">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="aksesoris">
+                    <div class="product-image">
+                        <span class="product-emoji">🎀</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">♡</div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Aksesoris</span>
+                        <h3>Bros Bunga Rajut (Set 3)</h3>
+                        <p class="product-desc">Set 3 bros bunga rajut warna pastel, cantik untuk hijab</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 65.000</span>
+                            <button class="btn-add-cart" onclick="addToCart('Bros Bunga Rajut Set 3', 65000, '🎀')">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="tas">
+                    <div class="product-image">
+                        <span class="product-emoji">👝</span>
+                        <span class="product-badge">Promo</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">♡</div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Tas Rajut</span>
+                        <h3>Clutch Pouch Geometris</h3>
+                        <p class="product-desc">Clutch pouch motif geometris, praktis untuk daily use</p>
+                        <div class="product-footer">
+                            <span class="product-price">Rp 75.000 <span class="old-price">Rp 95.000</span></span>
+                            <button class="btn-add-cart" onclick="addToCart('Clutch Pouch Geometris', 75000, '👝')">+</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- ====== FEATURED PRODUCT ====== -->
+    <section class="featured">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>100% Handmade</h3>
-                    <p>Dibuat secara manual dengan detail yang presisi.</p>
+            <div class="featured-grid">
+                <div class="featured-image">
+                    <span class="featured-emoji">👜</span>
                 </div>
-                <div class="feature-item">
-                    <i class="fas fa-leaf"></i>
-                    <h3>Bahan Premium</h3>
-                    <p>Menggunakan benang wol dan katun berkualitas tinggi.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h3>Pengiriman Cepat</h3>
-                    <p>Melayani pengiriman ke seluruh wilayah Indonesia.</p>
+                <div class="featured-content">
+                    <h3>⭐ Produk Unggulan</h3>
+                    <h2>Tas Rajut Premium "Nusantara Collection"</h2>
+                    <p>Koleksi eksklusif tas rajut dengan motif terinspirasi dari keindahan Nusantara. Dibuat dari benang katun premium dengan teknik rajut tradisional yang dimodernisasi.</p>
+                    <ul class="featured-features">
+                        <li>Benang katun premium import, tidak mudah melar</li>
+                        <li>Lining kain katun Jepang di bagian dalam</li>
+                        <li>Resleting YKK berkualitas tinggi</li>
+                        <li>Tali kulit asli yang adjustable</li>
+                        <li>Garansi 6 bulan untuk jahitan</li>
+                    </ul>
+                    <div class="featured-price">Rp 285.000</div>
+                    <a href="https://wa.me/6281234567890?text=Halo%20WiraStitch,%20saya%20tertarik%20dengan%20Tas%20Rajut%20Premium%20Nusantara%20Collection" class="btn btn-primary" target="_blank">Pesan via WhatsApp</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
+    <!-- ====== ABOUT ====== -->
+    <section class="about" id="tentang">
         <div class="container">
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="section-title" style="text-align: left;">
+                        <h2>Tentang WiraStitch</h2>
+                        <div class="divider" style="margin: 15px 0;"></div>
+                    </div>
+                    <p><strong>WiraStitch</strong> lahir dari kecintaan terhadap seni merajut dan keinginan untuk menghadirkan produk handmade berkualitas tinggi ke pasar Indonesia.</p>
+                    <p>Setiap produk kami dibuat dengan penuh perhatian dan ketelitian. Kami menggunakan benang-benang pilihan terbaik dan teknik rajut yang telah disempurnakan selama bertahun-tahun.</p>
+                    <p>Kami percaya bahwa setiap rajutan bukan sekadar barang, melainkan sebuah karya seni yang memiliki jiwa dan cerita. Dari pemilihan warna hingga detail terkecil, semuanya dikerjakan dengan tangan dan hati.</p>
+                    <p style="margin-top: 20px;">
+                        <strong>📍 Lokasi:</strong> Indonesia<br>
+                        <strong>📧 Email:</strong> hello@wirastitch.com<br>
+                        <strong>📱 WhatsApp:</strong> +62 812-3456-7890
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="about-img-card">🧶</div>
+                    <div class="about-img-card">🪡</div>
+                    <div class="about-img-card">🎨</div>
+                    <div class="about-img-card">💝</div>
+                </div>
             </div>
-            <p class="footer-text">&copy; 2026 WiraStitch. All Rights Reserved.</p>
-            <p class="footer-text">Designed by PRO DIGITAL</p>
+        </div>
+    </section>
+
+    <!-- ====== PROCESS ====== -->
+    <section class="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cara Memesan</h2>
+                <div class="divider"></div>
+                <p>Proses pemesanan yang mudah dan cepat</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">🔍</div>
+                    <h3>1. Pilih Produk</h3>
+                    <p>Jelajahi katalog kami dan pilih rajutan favorit Anda</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">💬</div>
+                    <h3>2. Hubungi Kami</h3>
+                    <p>Konfirmasi pesanan via WhatsApp atau form pemesanan</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">💳</div>
+                    <h3>3. Pembayaran</h3>
+                    <p>Transfer pembayaran melalui bank atau e-wallet</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">📦</div>
+                    <h3>4. Pengiriman</h3>
+                    <p>Pesanan dikirim dengan packaging cantik & aman</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TESTIMONIALS ====== -->
+    <section class="testimonials" id="testimoni">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apa Kata Mereka</h2>
+                <div class="divider"></div>
+                <p>Testimoni dari pelanggan setia WiraStitch</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Tas rajutnya cantik banget! Bahannya tebal dan rapi jahitannya. Sudah beli 3 kali dan selalu puas. Recommended banget!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">👩</div>
+                        <div>
+                            <div class="testimonial-name">Sari Dewi</div>
+                            <div class="testimonial-role">Pelanggan Setia</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Beli boneka amigurumi untuk kado ultah anak, hasilnya super lucu! Packagingnya juga cantik. Pasti order lagi!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">👨</div>
+                        <div>
+                            <div class="testimonial-name">Budi Santoso</div>
+                            <div class="testimonial-role">Pembeli Verified</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Scarf-nya lembut dan warnanya persis seperti di foto. Pengiriman cepat dan seller sangat responsif. Love it!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">👩</div>
+                        <div>
+                            <div class="testimonial-name">Anisa Rahman</div>
+                            <div class="testimonial-role">Fashion Blogger</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CTA ====== -->
+    <section class="cta">
+        <div class="container">
+            <h2>Pesan Custom Rajutan Impianmu! 🧶</h2>
+            <p>Ingin desain khusus? Kami menerima pesanan custom sesuai keinginan Anda. Konsultasi gratis!</p>
+            <a href="https://wa.me/6281234567890?text=Halo%20WiraStitch,%20saya%20ingin%20pesan%20custom%20rajutan" class="btn" target="_blank">Konsultasi Gratis via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- ====== NEWSLETTER ====== -->
+    <section class="newsletter" id="kontak">
+        <div class="container">
+            <div class="newsletter-box">
+                <h2>📬 Dapatkan Info Terbaru</h2>
+                <p>Subscribe newsletter kami untuk promo eksklusif & koleksi terbaru</p>
+                <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                    <input type="email" placeholder="Masukkan email Anda..." required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Wira<span>Stitch</span></h3>
+                    <p>Rajutan handmade premium dengan sentuhan seni dan cinta. Setiap produk dibuat khusus untuk Anda yang menghargai kualitas dan keunikan.</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="TikTok">🎵</a>
+                        <a href="#" title="Pinterest">📌</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="#">Tas Rajut</a></li>
+                        <li><a href="#">Topi & Beanie</a></li>
+                        <li><a href="#">Syal & Scarf</a></li>
+                        <li><a href="#">Boneka Amigurumi</a></li>
+                        <li><a href="#">Aksesoris</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Informasi</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Cara Pemesanan</a></li>
+                        <li><a href="#">Kebijakan Pengembalian</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="https://wa.me/6281234567890" target="_blank">📱 WhatsApp</a></li>
+                        <li><a href="mailto:hello@wirastitch.com">📧 Email</a></li>
+                        <li><a href="#">📍 Indonesia</a></li>
+                        <li><a href="#">⏰ Senin - Sabtu, 09:00 - 17:00</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 WiraStitch. All rights reserved. Made with 🧶 & ❤️</p>
+                <div class="footer-payments">
+                    <span title="BCA">🏦</span>
+                    <span title="Mandiri">🏧</span>
+                    <span title="GoPay">💚</span>
+                    <span title="OVO">💜</span>
+                    <span title="Dana">💙</span>
+                </div>
+            </div>
         </div>
     </footer>
 
-</body>
-</html>
+    <!-- ====== WHATSAPP FLOAT ====== -->
+    <a href="https://wa.me/6281234567890?text=Halo%20WiraStitch,%20saya%20tertarik%20dengan%20produk%20Anda" class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
+        💬
+    </a>
+
+    <!-- ====== BACK TO TOP ====== -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ====== CART SIDEBAR ====== -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <button class="cart-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div id="cartItems">
+            <div class="cart-empty">
+                <div class="empty-icon">🛒</div>
+                <p>Keranjang belanja masih kosong</p>
+            </div>
+        </div>
+        <div class="cart-total" id="cartTotal" style="display: none;">
+            <div class="cart-total-row">
+                <span>Subtotal</span>
+                <span id="subtotalPrice">Rp 0</span>
+            </div>
+            <div class="cart-total-row">
+                <span>Ongkir</span>
+                <span>Gratis*</span>
+            </div>
+            <div class="cart-total-row total">
+                <span>Total</span>
+                <span id="totalPrice">Rp 0</span>
+            </div>
+            <button class="cart-checkout" onclick="checkout()">Checkout via WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        // ====== CART DATA ======
+        let cart = [];
+
+        // ====== NAVBAR SCROLL ======
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
