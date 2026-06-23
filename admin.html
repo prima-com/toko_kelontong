@@ -804,6 +804,248 @@
         .table-responsive {
             overflow-x: auto;
         }
+    
+    /* ====== FEATURED PRODUCT ADMIN STYLES ====== */
+.featured-preview-box {
+    background: linear-gradient(135deg, var(--cream), var(--cream-dark));
+    border: 2px solid var(--cream-dark);
+    border-radius: var(--radius);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.featured-preview-box h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.featured-preview-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 25px;
+    align-items: center;
+}
+
+.featured-preview-image {
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.featured-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.featured-preview-info .preview-label {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.featured-preview-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    margin: 8px 0;
+}
+
+.featured-preview-info p {
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    line-height: 1.5;
+}
+
+.featured-preview-info .preview-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 10px;
+}
+
+.featured-form-section {
+    border-top: 2px solid var(--cream-dark);
+    padding-top: 25px;
+    margin-top: 25px;
+}
+
+.featured-form-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.feature-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.feature-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid var(--cream-dark);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    transition: var(--transition);
+    background: var(--cream);
+}
+
+.feature-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--white);
+}
+
+.btn-remove-feature {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: none;
+    background: #fdeaea;
+    color: var(--danger);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remove-feature:hover {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-add-feature {
+    padding: 10px 20px;
+    background: var(--cream);
+    color: var(--primary);
+    border: 2px dashed var(--primary-light);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+    margin-top: 5px;
+}
+
+.btn-add-feature:hover {
+    background: var(--cream-dark);
+            border-color: var(--primary);
+        }
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--success);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* Featured Preview Features List */
+.preview-features {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.preview-features li {
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.preview-features li::before {
+    content: '✓';
+    color: var(--success);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .featured-preview-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .featured-preview-image {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .feature-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-remove-feature {
+        width: 100%;
+        height: 34px;
+    }
+}
+    
+    
     </style>
 </head>
 <body>
@@ -885,9 +1127,9 @@
             <div class="admin-tabs">
                 <button class="tab-btn active" onclick="switchTab('products')">📦 Daftar Produk</button>
                 <button class="tab-btn" onclick="switchTab('add')">➕ Tambah Produk</button>
+                <button class="tab-btn" onclick="switchTab('featured')">⭐ Produk Unggulan</button>
                 <button class="tab-btn" onclick="switchTab('settings')">⚙️ Pengaturan</button>
             </div>
-
             <!-- TAB: Product List -->
             <div class="tab-content active" id="tab-products">
                 <div class="product-table-wrapper">
@@ -1001,6 +1243,139 @@
                         <div style="margin-top: 25px;">
                             <button type="submit" class="btn-submit" id="submitBtn">💾 Simpan Produk</button>
                             <button type="button" class="btn-cancel" onclick="cancelEdit()">✖ Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+                        <!-- TAB: Featured Product -->
+            <div class="tab-content" id="tab-featured">
+                <div class="form-card">
+                    <h2>⭐ Kelola Produk Unggulan</h2>
+                    <p class="form-subtitle">Atur produk yang tampil di section "Produk Unggulan" di halaman utama</p>
+
+                    <form id="featuredForm" onsubmit="handleFeaturedSubmit(event)">
+
+                        <!-- Preview Section -->
+                        <div class="featured-preview-box">
+                            <h4>👁️ Preview Tampilan</h4>
+                            <div class="featured-preview-content" id="featuredPreview">
+                                <div class="featured-preview-image" id="featuredPreviewImage">
+                                    <span id="featuredPreviewEmoji" style="font-size: 5rem;">👜</span>
+                                    <img id="featuredPreviewImg" class="featured-preview-img" style="display: none;" alt="Preview">
+                                </div>
+                                <div class="featured-preview-info">
+                                    <span class="preview-label" id="previewLabel">⭐ PRODUK UNGGULAN</span>
+                                    <h3 id="previewName">Tas Rajut Premium "Nusantara Collection"</h3>
+                                    <p id="previewDesc">Koleksi eksklusif tas rajut dengan motif terinspirasi dari keindahan Nusantara.</p>
+                                    <div class="preview-price" id="previewPrice">Rp 285.000</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Fields -->
+                        <div class="featured-form-section">
+                            <h3>📝 Detail Produk Unggulan</h3>
+
+                            <div class="form-group">
+                                <label>🏷️ Label / Sub-judul *</label>
+                                <input type="text" id="featuredLabel" value="⭐ Produk Unggulan" placeholder="Contoh: ⭐ Produk Unggulan" oninput="updateFeaturedPreview()" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>📝 Nama Produk Unggulan *</label>
+                                <input type="text" id="featuredName" placeholder='Contoh: Tas Rajut Premium "Nusantara Collection"' oninput="updateFeaturedPreview()" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>📄 Deskripsi Produk *</label>
+                                <textarea id="featuredDesc" placeholder="Jelaskan produk unggulan Anda secara detail..." oninput="updateFeaturedPreview()" required></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>💰 Harga (Rp) *</label>
+                                    <input type="number" id="featuredPrice" placeholder="Contoh: 285000" min="0" oninput="updateFeaturedPreview()" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>😊 Emoji Produk (jika tanpa foto)</label>
+                                    <input type="text" id="featuredEmoji" value="👜" placeholder="Contoh: 👜" maxlength="4" oninput="updateFeaturedPreview()">
+                                </div>
+                            </div>
+
+                            <!-- Features List -->
+                            <div class="form-group">
+                                <label>✅ Daftar Keunggulan / Fitur</label>
+                                <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 10px;">Tambahkan poin-poin keunggulan produk (satu per baris)</p>
+                                <div id="featuredFeaturesList">
+                                    <div class="feature-row">
+                                        <input type="text" class="feature-input" placeholder="Contoh: Benang katun premium import" value="Benang katun premium import, tidak mudah melar" oninput="updateFeaturedPreview()">
+                                        <button type="button" class="btn-remove-feature" onclick="removeFeature(this)">✕</button>
+                                    </div>
+                                    <div class="feature-row">
+                                        <input type="text" class="feature-input" placeholder="Fitur lainnya..." value="Lining kain katun Jepang di bagian dalam" oninput="updateFeaturedPreview()">
+                                        <button type="button" class="btn-remove-feature" onclick="removeFeature(this)">✕</button>
+                                    </div>
+                                    <div class="feature-row">
+                                        <input type="text" class="feature-input" placeholder="Fitur lainnya..." value="Resleting YKK berkualitas tinggi" oninput="updateFeaturedPreview()">
+                                        <button type="button" class="btn-remove-feature" onclick="removeFeature(this)">✕</button>
+                                    </div>
+                                    <div class="feature-row">
+                                        <input type="text" class="feature-input" placeholder="Fitur lainnya..." value="Tali kulit asli yang adjustable" oninput="updateFeaturedPreview()">
+                                        <button type="button" class="btn-remove-feature" onclick="removeFeature(this)">✕</button>
+                                    </div>
+                                    <div class="feature-row">
+                                        <input type="text" class="feature-input" placeholder="Fitur lainnya..." value="Garansi 6 bulan untuk jahitan" oninput="updateFeaturedPreview()">
+                                        <button type="button" class="btn-remove-feature" onclick="removeFeature(this)">✕</button>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-add-feature" onclick="addFeatureRow()">➕ Tambah Fitur</button>
+                            </div>
+
+                            <!-- Image Upload -->
+                            <div class="form-group">
+                                <label>📸 Foto Produk Unggulan</label>
+                                <div class="image-upload-area" onclick="document.getElementById('featuredImage').click()">
+                                    <div class="upload-icon">📷</div>
+                                    <p><strong>Klik untuk upload foto</strong></p>
+                                    <p>atau drag & drop file gambar di sini</p>
+                                    <p class="or-text">— ATAU —</p>
+                                    <p style="font-size: 0.8rem;">Masukkan URL gambar di bawah</p>
+                                    <input type="file" id="featuredImage" accept="image/*" style="display: none;" onchange="handleFeaturedImageUpload(event)">
+                                </div>
+                                <div class="form-group" style="margin-top: 15px;">
+                                    <label>🔗 Atau paste URL gambar:</label>
+                                    <input type="url" id="featuredImageUrl" placeholder="https://example.com/foto-produk-unggulan.jpg" oninput="handleFeaturedImageUrl(this.value)">
+                                </div>
+                            </div>
+
+                            <!-- Button Text -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>🔘 Teks Tombol CTA</label>
+                                    <input type="text" id="featuredButtonText" value="Pesan via WhatsApp" placeholder="Contoh: Pesan via WhatsApp" oninput="updateFeaturedPreview()">
+                                </div>
+                                <div class="form-group">
+                                    <label>🔗 Link Tombol CTA</label>
+                                    <input type="text" id="featuredButtonLink" value="" placeholder="Otomatis menggunakan link WhatsApp" oninput="updateFeaturedPreview()">
+                                </div>
+                            </div>
+
+                            <!-- Show/Hide Toggle -->
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 1rem;">
+                                    <div class="toggle-switch" id="featuredToggle">
+                                        <input type="checkbox" id="featuredVisible" checked onchange="updateFeaturedPreview()">
+                                        <span class="toggle-slider"></span>
+                                    </div>
+                                    <span>Tampilkan section Produk Unggulan di halaman utama</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; display: flex; gap: 10px;">
+                            <button type="submit" class="btn-submit">💾 Simpan Produk Unggulan</button>
+                            <button type="button" class="btn-cancel" onclick="resetFeaturedForm()">🔄 Reset ke Default</button>
                         </div>
                     </form>
                 </div>
@@ -1282,6 +1657,7 @@
             renderProductTable();
             updateStats();
             loadSettingsForm();
+            loadFeaturedForm();
         }
 
         function updateStats() {
@@ -1628,6 +2004,220 @@
             showToast('✅ Pengaturan kontak berhasil disimpan!');
         }
 
+                // ===========================
+        // FEATURED PRODUCT MANAGEMENT
+        // ===========================
+        const DEFAULT_FEATURED = {
+            label: '⭐ Produk Unggulan',
+            name: 'Tas Rajut Premium "Nusantara Collection"',
+            description: 'Koleksi eksklusif tas rajut dengan motif terinspirasi dari keindahan Nusantara. Dibuat dari benang katun premium dengan teknik rajut tradisional yang dimodernisasi.',
+            price: 285000,
+            emoji: '👜',
+            image: '',
+            features: [
+                'Benang katun premium import, tidak mudah melar',
+                'Lining kain katun Jepang di bagian dalam',
+                'Resleting YKK berkualitas tinggi',
+                'Tali kulit asli yang adjustable',
+                'Garansi 6 bulan untuk jahitan'
+            ],
+            buttonText: 'Pesan via WhatsApp',
+            buttonLink: '',
+            visible: true
+        };
+
+        function getFeatured() {
+            const data = localStorage.getItem('wirastitch_featured');
+            if (!data) {
+                localStorage.setItem('wirastitch_featured', JSON.stringify(DEFAULT_FEATURED));
+                return DEFAULT_FEATURED;
+            }
+            return JSON.parse(data);
+        }
+
+        function saveFeatured(featured) {
+            localStorage.setItem('wirastitch_featured', JSON.stringify(featured));
+        }
+
+        function loadFeaturedForm() {
+            const featured = getFeatured();
+
+            document.getElementById('featuredLabel').value = featured.label || '';
+            document.getElementById('featuredName').value = featured.name || '';
+            document.getElementById('featuredDesc').value = featured.description || '';
+            document.getElementById('featuredPrice').value = featured.price || '';
+            document.getElementById('featuredEmoji').value = featured.emoji || '👜';
+            document.getElementById('featuredButtonText').value = featured.buttonText || 'Pesan via WhatsApp';
+            document.getElementById('featuredButtonLink').value = featured.buttonLink || '';
+            document.getElementById('featuredVisible').checked = featured.visible !== false;
+
+            if (featured.image) {
+                const previewImg = document.getElementById('featuredPreviewImg');
+                previewImg.src = featured.image;
+                previewImg.style.display = 'block';
+                document.getElementById('featuredPreviewEmoji').style.display = 'none';
+            }
+
+            // Load features
+            const featuresList = document.getElementById('featuredFeaturesList');
+            featuresList.innerHTML = '';
+            
+            if (featured.features && featured.features.length > 0) {
+                featured.features.forEach(feature => {
+                    const row = createFeatureRow(feature);
+                    featuresList.appendChild(row);
+                });
+            } else {
+                const row = createFeatureRow('');
+                featuresList.appendChild(row);
+            }
+
+            updateFeaturedPreview();
+        }
+
+        function createFeatureRow(value) {
+            const row = document.createElement('div');
+            row.className = 'feature-row';
+            row.innerHTML = `
+                <input type="text" class="feature-input" placeholder="Contoh: Benang katun premium import" value="${value || ''}" oninput="updateFeaturedPreview()">
+                <button type="button" class="btn-remove-feature" onclick="removeFeature(this)">✕</button>
+            `;
+            return row;
+        }
+
+        function addFeatureRow() {
+            const featuresList = document.getElementById('featuredFeaturesList');
+            const row = createFeatureRow('');
+            featuresList.appendChild(row);
+            row.querySelector('input').focus();
+        }
+
+        function removeFeature(btn) {
+            const featuresList = document.getElementById('featuredFeaturesList');
+            if (featuresList.children.length > 1) {
+                btn.parentElement.remove();
+                updateFeaturedPreview();
+            } else {
+                showToast('⚠️ Minimal harus ada 1 fitur!', 'error');
+            }
+        }
+
+        function updateFeaturedPreview() {
+            const label = document.getElementById('featuredLabel').value || '⭐ PRODUK UNGGULAN';
+            const name = document.getElementById('featuredName').value || 'Nama Produk';
+            const desc = document.getElementById('featuredDesc').value || 'Deskripsi produk...';
+            const price = parseInt(document.getElementById('featuredPrice').value) || 0;
+            const emoji = document.getElementById('featuredEmoji').value || '👜';
+
+            document.getElementById('previewLabel').textContent = label;
+            document.getElementById('previewName').textContent = name;
+            document.getElementById('previewDesc').textContent = desc;
+            document.getElementById('previewPrice').textContent = formatRupiah(price);
+
+            // Update emoji if no image
+            const previewImg = document.getElementById('featuredPreviewImg');
+            if (previewImg.style.display === 'none' || !previewImg.src) {
+                document.getElementById('featuredPreviewEmoji').textContent = emoji;
+                document.getElementById('featuredPreviewEmoji').style.display = 'block';
+            }
+
+            // Update features preview
+            const featureInputs = document.querySelectorAll('.feature-input');
+            let featuresHtml = '<ul class="preview-features">';
+            featureInputs.forEach(input => {
+                if (input.value.trim()) {
+                    featuresHtml += `<li>${input.value.trim()}</li>`;
+                }
+            });
+            featuresHtml += '</ul>';
+            
+            // Insert or update features in preview
+            let featuresContainer = document.getElementById('previewFeatures');
+            if (!featuresContainer) {
+                featuresContainer = document.createElement('div');
+                featuresContainer.id = 'previewFeatures';
+                const descEl = document.getElementById('previewDesc');
+                descEl.parentNode.insertBefore(featuresContainer, descEl.nextSibling);
+            }
+            featuresContainer.innerHTML = featuresHtml;
+        }
+
+        function handleFeaturedImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 500 * 1024) {
+                showToast('⚠️ File terlalu besar! Maksimal 500KB. Gunakan URL gambar sebagai gantinya.', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewImg = document.getElementById('featuredPreviewImg');
+                previewImg.src = e.target.result;
+                previewImg.style.display = 'block';
+                document.getElementById('featuredPreviewEmoji').style.display = 'none';
+                document.getElementById('featuredImageUrl').value = '';
+                updateFeaturedPreview();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleFeaturedImageUrl(url) {
+            if (url) {
+                const previewImg = document.getElementById('featuredPreviewImg');
+                previewImg.src = url;
+                previewImg.style.display = 'block';
+                document.getElementById('featuredPreviewEmoji').style.display = 'none';
+                document.getElementById('featuredImage').value = '';
+                updateFeaturedPreview();
+            }
+        }
+
+        function handleFeaturedSubmit(e) {
+            e.preventDefault();
+
+            // Gather features
+            const featureInputs = document.querySelectorAll('.feature-input');
+            const features = [];
+            featureInputs.forEach(input => {
+                if (input.value.trim()) {
+                    features.push(input.value.trim());
+                }
+            });
+
+            // Get image
+            const previewImg = document.getElementById('featuredPreviewImg');
+            let image = '';
+            if (previewImg.style.display !== 'none' && previewImg.src && !previewImg.src.endsWith('undefined')) {
+                image = previewImg.src;
+            }
+
+            const featuredData = {
+                label: document.getElementById('featuredLabel').value.trim(),
+                name: document.getElementById('featuredName').value.trim(),
+                description: document.getElementById('featuredDesc').value.trim(),
+                price: parseInt(document.getElementById('featuredPrice').value) || 0,
+                emoji: document.getElementById('featuredEmoji').value.trim() || '👜',
+                image: image,
+                features: features,
+                buttonText: document.getElementById('featuredButtonText').value.trim() || 'Pesan via WhatsApp',
+                buttonLink: document.getElementById('featuredButtonLink').value.trim(),
+                visible: document.getElementById('featuredVisible').checked
+            };
+
+            saveFeatured(featuredData);
+            showToast('✅ Produk Unggulan berhasil disimpan!');
+        }
+
+        function resetFeaturedForm() {
+            localStorage.setItem('wirastitch_featured', JSON.stringify(DEFAULT_FEATURED));
+            loadFeaturedForm();
+            showToast('🔄 Form Produk Unggulan direset ke default.', 'info');
+        }
+
+
+        
         // ===========================
         // INIT
         // ===========================
